@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENORAH - The Light of Crypto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8941F;
+            --cream: #FAF8F3;
+            --charcoal: #1A1A1A;
+            --soft-black: #0D0D0D;
+            --light-gold: #F5E6C8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, var(--cream) 0%, rgba(250, 248, 243, 0.95) 70%, transparent 100%);
+            backdrop-filter: blur(10px);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo img {
+            width: 45px;
+            margin-right: 20px;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--dark-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--dark-gold);
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        /* Video Container */
+        .video-container {
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            background: var(--soft-black);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(212, 175, 55, 0.1);
+            margin-bottom: 6rem;
+            opacity: 0;
+            animation: fadeInScale 1s ease-out 0.9s forwards;
+            position: relative;
+            width: 400px;
+            height: 682px;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* .video-container::after {
+            content: 'VIDEO';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            opacity: 0.2;
+        } */
+
+        video, .video-placeholder {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 4rem auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 1rem 2rem 6rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        .contact-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+        }
+
+        .contact-address {
+            font-family: 'DM Sans', monospace;
+            font-size: 0.95rem;
+            background: var(--light-gold);
+            padding: 1.5rem 2.5rem;
+            border-radius: 2px;
+            display: inline-block;
+            letter-spacing: 0.05em;
+            color: var(--charcoal);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            user-select: all;
+        }
+
+        .contact-address:hover {
+            background: var(--gold);
+            color: var(--cream);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Lore Section */
+        .lore-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--light-gold) 100%);
+            position: relative;
+        }
+
+        .lore-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(180deg, transparent, var(--gold), transparent);
+        }
+
+        .lore-content {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .lore-content img {
+            width: 300px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+
+        .lore-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--charcoal);
+        }
+
+        .lore-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            text-align: center;
+        }
+
+        .lore-text p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .lore-punchline {
+            font-weight: 500;
+            color: var(--dark-gold);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .lore-punchline em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            opacity: 0.6;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 2rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .video-container {
+                width: 95%;
+            }
+
+            .contact-header {
+                font-size: 2rem;
+            }
+
+            .contact-address {
+                font-size: 0.75rem;
+                padding: 1.2rem 1.5rem;
+                word-break: break-all;
+            }
+        }
+
+        /* Subtle animations for floating effect */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .logo {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="star.svg" alt=""> MENORAH
+        </div>
+        <nav>
+            <a href="https://x.com" target="_blank">X</a>
+            <a href="https://pump.fun" target="_blank">Buy</a>
+            <a href="#lore">Lore</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">MENORAH</h1>
+        <p class="hero-subtitle">Seven Flames · Infinite Light</p>
+        
+        <div class="video-container">
+            <!-- Replace this placeholder with your actual video -->
+            <video controls poster="">
+                <source src="./vid.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- <div class="divider"></div> -->
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2 class="contact-header">Contract Address</h2>
+        <div class="contact-address" onclick="copyToClipboard(this)">
+            0x0000000000000000000000000000000000000000
+        </div>
+    </section>
+
+    <!-- Lore Section -->
+    <section class="lore-section" id="lore">
+        <div class="lore-content">
+            <h2 class="lore-header">The Eternal Flame</h2>
+            <div style="text-align: center;"><img src="./content.webp" alt=""></div>
+            <div class="lore-text">
+                <p>For over two millennia, the menorah has stood as a symbol of light triumphing over darkness, commemorating the miracle of oil that burned for seven days when there was only enough for one. Rooted deeply in Jewish tradition and heritage, the menorah represents perseverance, faith, and the enduring spirit of a community that has weathered every storm.</p>
+                
+                <p>In the volatile wilderness of crypto, we keep the flame alive. While others chase pump-and-dump schemes, we're here for the long burn. Because in this market, you don't need a bull run—you need a candle that actually stays lit.</p>
+                
+                <p class="lore-punchline">Remember: We're not just HODLing—we're keeping the wick trimmed and the wax solid. Seven flames, infinite gains. This isn't financial advice, but it is <em>illuminating</em>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 MENORAH · A Light in the Crypto Darkness</p>
+    </footer>
+
+    <script>
+        function copyToClipboard(element) {
+            const text = element.textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                const original = element.textContent;
+                element.textContent = 'COPIED ✓';
+                setTimeout(() => {
+                    element.textContent = original;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
